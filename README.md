@@ -4,7 +4,7 @@
 
 ![DSA](https://img.shields.io/badge/DSA-Practice-orange?style=for-the-badge)
 ![Daily Commit](https://img.shields.io/badge/Daily-Commit-success?style=for-the-badge)
-![Language](https://img.shields.io/badge/Language-Python-blue?style=for-the-badge&logo=python)
+![Language](https://img.shields.io/badge/Language-Java-blue?style=for-the-badge&logo=Java)
 
 ### 🎯 *Consistency is the key to mastery!*
 
