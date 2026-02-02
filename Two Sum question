@@ -1,0 +1,20 @@
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        // Outer loop picks the first number (i)
+        for (int i = 0; i < nums.length; i++) {
+            
+            // Inner loop picks the second number (j)
+            // Start j at i + 1 so we don't add a number to itself
+            for (int j = i + 1; j < nums.length; j++) {
+                
+                // Check if they add up to target
+                if (nums[i] + nums[j] == target) {
+                    return new int[]{i, j};
+                }
+            }
+        }
+        
+        // Return empty if no solution found
+        return new int[]{};
+    }
+}
