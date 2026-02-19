@@ -1,0 +1,16 @@
+class Solution {
+    public int countBinarySubstrings(String s) {
+    int result=0;int pc=0;int cc=1;
+    for(int i=1;i<s.length();i++){
+        if(s.charAt(i)==s.charAt(i-1)){
+            cc++;
+        }else{
+            result+=Math.min(pc,cc);
+            pc=cc;
+            cc=1;
+        }
+
+    }  
+    return result+Math.min(pc,cc); 
+    }
+}
