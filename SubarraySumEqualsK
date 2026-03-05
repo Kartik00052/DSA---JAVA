@@ -1,0 +1,15 @@
+class Solution {
+    public int subarraySum(int[] nums, int k) {
+    Map<Integer,Integer> H=new HashMap<>();
+    int r=0;int psum=0;
+    H.put(0,1);    
+    for(int num:nums){
+    psum+=num;
+    if(H.containsKey(psum-k)){
+        r+=H.get(psum-k);
+    }
+    H.put(psum,H.getOrDefault(psum,0)+1);
+    }
+    return r;
+    }
+}
