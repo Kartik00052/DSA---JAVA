@@ -1,0 +1,27 @@
+class Solution {
+     ListNode curr;
+
+    void solve(ListNode head) {
+        if (head == null) {
+            return;
+        }
+
+        solve(head.next);
+        ListNode tempn = curr.next;
+        if (tempn == null) {
+            return;
+        } else if (head == curr) {
+            head.next = null;
+            return;
+        }
+
+        curr.next = head;
+        head.next = tempn == head ? null : tempn;
+
+        curr = tempn;
+    }
+    public void reorderList(ListNode head) {
+     curr = head;
+        solve(head);    
+    }
+}
