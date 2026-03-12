@@ -1,0 +1,29 @@
+class Solution {
+    public String[] findRelativeRanks(int[] score) {
+    int n=score.length;
+    String[]result=new String[n];
+    int M=Arrays.stream(score).max().getAsInt();
+    int[]mp=new int[M+1];
+    Arrays.fill(mp,-1);
+    for(int i=0;i<n;i++){
+    mp[score[i]]=i;
+    }   
+    int rank=1;
+    for(int s=M;s>=0;s--){
+        if(mp[s]!=-1){
+            int athlete=mp[s];
+            if(rank==1){
+                result[athlete]="Gold Medal";
+            }else if(rank==2){
+             result[athlete]="Silver Medal";   
+            } else if(rank==3){
+                result[athlete]="Bronze Medal";
+            }else{
+                result[athlete]=String.valueOf(rank);
+            }
+        rank++;
+        }
+    }
+    return result;
+    }
+}
