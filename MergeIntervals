@@ -1,0 +1,20 @@
+class Solution {
+    public int[][] merge(int[][] intervals) {
+    if(intervals.length<=1){
+        return intervals;
+    }    
+    Arrays.sort(intervals,Comparator.comparingInt(i->i[0]));
+    List<int[]> result= new ArrayList<>();
+    int [] newInter=intervals[0];
+    result.add(newInter);
+    for(int[]interval:intervals){
+        if(interval[0]<=newInter[1]){
+            newInter[1]=Math.max(newInter[1],interval[1]);
+        }else{
+            newInter=interval;
+            result.add(newInter);
+        }
+    }
+    return result.toArray(new int[result.size()][]);
+    }
+}
