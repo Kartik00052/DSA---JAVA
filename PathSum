@@ -1,0 +1,18 @@
+class Solution {
+    boolean pathsum(TreeNode root,int sum,int curr){
+        if(root==null){
+            return false;
+        }
+        
+        if(root.left==null&&root.right==null){
+            return ((curr+root.val)==sum);
+        }
+        boolean l=pathsum(root.left,sum,curr+root.val);
+        boolean r=pathsum(root.right,sum,curr+root.val);
+        return l||r;
+        
+    }
+    public boolean hasPathSum(TreeNode root, int targetSum) {
+    return pathsum(root,targetSum,0);    
+    }
+}
