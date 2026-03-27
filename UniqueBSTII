@@ -1,0 +1,30 @@
+class Solution {
+    Map<Pair<Integer,Integer>,List<TreeNode>> memo;
+    List<TreeNode> allPossibleBST(int start,int end){
+    List<TreeNode> result=new ArrayList<>();
+    if(start>end){
+    result.add(null);
+    return result;
+    }
+    if(memo.containsKey(new Pair<>(start,end))){
+        return memo.get(new Pair<>(start,end));
+    }
+   for(int i=start;i<=end;i++){
+    List<TreeNode> left_bst=allPossibleBST(start,i-1);
+    List<TreeNode> right_bst=allPossibleBST(i+1,end);
+    for(TreeNode left:left_bst){
+        for(TreeNode right:right_bst){
+        TreeNode root= new TreeNode(i,left,right);
+        result.add(root);
+        }
+    }
+   }
+    memo.put(new Pair<>(start, end), result);
+        return result;
+    }   
+    public List<TreeNode> generateTrees(int n) {
+    memo=new HashMap<>();
+    return allPossibleBST(1,n);
+
+    }
+}
