@@ -1,0 +1,21 @@
+class Solution {
+    public boolean isSameTree(TreeNode p, TreeNode q) {
+    Queue<TreeNode> t=new LinkedList<>();
+    t.add(p);
+    t.add(q);
+    while(!t.isEmpty()){
+        TreeNode first=t.poll();
+        TreeNode second=t.poll();
+        if(first==null&&second==null){
+            continue;
+        }else if(first==null||second==null||first.val!=second.val){
+            return false;
+        }
+        t.add(first.left);
+        t.add(second.left);
+        t.add(first.right);
+        t.add(second.right);
+    }
+    return true;
+    }
+}
