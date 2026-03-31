@@ -1,0 +1,67 @@
+class Solution {
+    public String generateString(String str1, String str2) {
+        int n = str1.length();
+        int m = str2.length();
+        int N = n + m - 1;
+
+        char word[] = new char[N];
+        boolean change[] = new boolean[N];
+
+        for (int i = 0; i < N; i++) {
+            word[i] = '$';
+        }
+
+        
+        for (int i = 0; i < n; i++) {
+            if (str1.charAt(i) == 'T') {
+                int idx = i;
+                for (int j = 0; j < m; j++) {
+                    if (word[idx] != '$' && word[idx] != str2.charAt(j)) {
+                        return "";
+                    }
+                    word[idx] = str2.charAt(j);
+                    idx++;
+                }
+            }
+        }
+
+       
+        for (int i = 0; i < N; i++) {
+            if (word[i] == '$') {
+                word[i] = 'a';
+                change[i] = true;
+            }
+        }
+
+        for (int i = 0; i < n; i++) {
+            if (str1.charAt(i) == 'F') {
+                if (isSame(word, str2, i, m)) {
+                    boolean changes = false;
+
+                    for (int k = i+m-1; k >= i; k--) {
+                        if (change[k]) {
+                            word[k] = 'b';
+                            changes = true;
+                            break;
+                        }
+                    }
+
+                    if (!changes) {
+                        return "";
+                    }
+                }
+            }
+        }
+
+        return new String(word);
+    }
+
+    boolean isSame(char[] word, String str2, int i, int m) {
+        for (int j = 0; j < m; j++) {
+            if (word[i+j] != str2.charAt(j)) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
