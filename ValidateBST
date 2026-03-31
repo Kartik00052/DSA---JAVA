@@ -1,0 +1,23 @@
+class Solution {
+    void helper(TreeNode root,List<Integer> inorder){
+        if(root==null){
+            return;
+        }
+        helper(root.left,inorder);
+        inorder.add(root.val);
+        helper(root.right,inorder);
+    }
+    public boolean isValidBST(TreeNode root) {
+    List<Integer> inorder=new LinkedList<>();   
+    helper(root,inorder);
+    boolean isBST=true;
+    int prev=inorder.get(0);
+    for(int i=1;i<inorder.size();i++){
+    if(inorder.get(i)<=prev){
+        isBST=false;
+    }
+    prev=inorder.get(i);
+    }
+    return isBST;
+    }
+}
