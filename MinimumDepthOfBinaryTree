@@ -1,0 +1,23 @@
+class Solution {
+    public int minDepth(TreeNode root) {
+    if(root==null){
+        return 0;
+    }    
+    Queue<TreeNode> q=new LinkedList<>();
+    q.add(root);
+    int level=0;
+    while(!q.isEmpty()){
+        level++;
+    int size=q.size();
+    for(int i=0;i<size;i++){
+        TreeNode poped=q.poll();
+        if (poped.left != null) q.add(poped.left);
+        if (poped.right != null) q.add(poped.right);
+        if(poped.left==null&&poped.right==null){
+            return level;
+        }
+    }
+    }
+    return level;
+    }
+}
