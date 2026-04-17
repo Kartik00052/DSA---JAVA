@@ -1,0 +1,43 @@
+/////////////////////////////////////SOLUTION 1////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+class Solution {
+    public boolean canJump(int[] nums) {
+        int maxReach = 0;
+
+        for (int i = 0; i < nums.length; i++) {
+            if (i > maxReach)
+                return false;
+
+            maxReach = Math.max(maxReach, i + nums[i]);
+        }
+
+        return true;
+    }
+}
+//////////////////////////////////////////////////////////////SOLUTION 2/////////////////////////////////////////////////////////////////////////////////////////
+RECURSION+MEMOIZATION
+import java.util.Arrays;
+
+class Solution {
+    int[] t = new int[10001];
+
+    public boolean solve(int[] nums, int n, int idx) {
+        if (idx == n - 1)
+            return true;
+
+        if (t[idx] != -1)
+            return t[idx] == 1;
+
+        for (int i = 1; i <= nums[idx]; i++) {
+            if (solve(nums, n, idx + i))
+                return (t[idx] = 1) == 1;
+        }
+
+        return (t[idx] = 0) == 1;
+    }
+
+    public boolean canJump(int[] nums) {
+        int n = nums.length;
+        Arrays.fill(t, -1);
+        return solve(nums, n, 0);
+    }
+}
